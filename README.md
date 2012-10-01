@@ -16,15 +16,19 @@ Or install it yourself as:
 
     $ gem install sisyphus-rails
 
-For a basic install include the following in your ++app/assets/javascripts/application.js++ file
+For a basic install include the following in your *app/assets/javascripts/application.js* file
 
     //= require jstorage
     //= require sisyphus
 
 ## How it Works
 
-Sisyphus uses an aliased form_tag method to automatically put a ++<script>...</script>++ tag infront of your forms. 
+Sisyphus uses an aliased form_tag method to automatically put a *&lt;script&gt;...&lt;/script&gt;* tag infront of your forms to initialize Sisyphus
 
+    <script>$(document).ready(function() {$('#sampleform').sisyphus();});</script>
+    <form id="sampleform">
+    ...
+    </form>
 ## Usage
 
 Sisyphus automatically works with all your forms, including custom form builders. 

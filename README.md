@@ -21,11 +21,16 @@ For a basic install include the following in your ++app/assets/javascripts/appli
     //= require jstorage
     //= require sisyphus
 
+## How it Works
+
+Sisyphus uses an aliased form_tag method to automatically put a ++<script>...</script>++ tag infront of your forms. 
+
 ## Usage
 
-If you are using the default form builder you do not have to modify anything to have Sisyphus start auto-saving your forms. 
+Sisyphus automatically works with all your forms, including custom form builders. 
 
-ActionView::Base.default_form_builder = YourFormBuilder
+### Exclude form
+
 
 ## Dependencies
 

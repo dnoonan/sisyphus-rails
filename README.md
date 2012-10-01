@@ -16,15 +16,28 @@ Or install it yourself as:
 
     $ gem install sisyphus-rails
 
+For a basic install include the following in your ++app/assets/javascripts/application.js++ file
+
+    //= require jstorage
+    //= require sisyphus
+
 ## Usage
 
-Requires jquery.
+If you are using the default form builder you do not have to modify anything to have Sisyphus start auto-saving your forms. 
+
+ActionView::Base.default_form_builder = YourFormBuilder
+
+## Dependencies
+
+- Rails >= 3.1
+- Jquery
 
 ## TODO
 
 - Tests
 - Multiple library support for jStorage (Prototype, Mootools etc.)
 - Support for formtastic and extending other form builders
+- Model/Object based exclusions
 
 ## Contributing
 

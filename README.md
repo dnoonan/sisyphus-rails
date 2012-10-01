@@ -39,10 +39,8 @@ Sisyphus automatically works with all your forms, including custom form builders
 
 ## TODO
 
-- Fix the double script tag issue caused by the initialization of the builder twice, once in form_for and once in fields_for right below it
 - Tests
 - Multiple library support for jStorage (Prototype, Mootools etc.)
-- Support for formtastic and extending other form builders
 - Model/Object based exclusions
 
 ## Contributing

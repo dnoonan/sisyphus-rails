@@ -47,7 +47,7 @@ To stop Sisyphus from initializing on a form include the *with_sisyphus* option 
 ## Dependencies
 
 - Rails >= 3.1
-- Jquery
+- Jquery 1.8+
 
 ## TODO
 
@@ -67,6 +67,8 @@ To stop Sisyphus from initializing on a form include the *with_sisyphus* option 
 - implement all sisyphus options and any relevant ones in jStorage
 
 ## Contributing
+
+If you have time to tackle something off the TODO list before I manage to get around to it then please do!
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)

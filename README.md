@@ -22,7 +22,7 @@ For a basic install include the following in your *app/assets/javascripts/applic
 
 To support IE6/7 users include jStorage as well
 
-  //= require jstorage
+    //= require jstorage
 
 ## How it Works
 
@@ -63,7 +63,7 @@ To stop Sisyphus from initializing on a form include the *with_sisyphus* option 
       <% :sisyphus_customKeyPrefix => 'sisy' %>
       ...
     <% end %>
-    
+
 - implement all sisyphus options and any relevant ones in jStorage
 
 ## Contributing

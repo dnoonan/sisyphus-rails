@@ -49,7 +49,8 @@ To stop Sisyphus from initializing on a form include the *with_sisyphus* option 
 ## TODO
 
 - Tests
-- Model/Object based exclusions
+- Move away from form_tag_helper, should be able to do it all from form_helper? Script tag can go at the end anyhow.
+- Model/Object based exclusions via config or activerecord extension?
 - block based options
 
     <%= form_for User.new do |f| %>

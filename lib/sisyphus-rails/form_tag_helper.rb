@@ -5,7 +5,7 @@ module ActionView
       def form_tag_with_sisyphus(url_for_options = {}, options = {}, &block)
         buf = ActiveSupport::SafeBuffer.new
 
-        if options.has_key?(:id)
+        if options.has_key?(:id) && Sisyphus::process
           buf.safe_concat("<script type=\"text/javascript\">$(document).ready(function() {$('##{options[:id]}').sisyphus();});</script>")
         end
 

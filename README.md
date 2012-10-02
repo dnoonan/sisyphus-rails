@@ -23,11 +23,11 @@ For a basic install include the following in your *app/assets/javascripts/applic
 
 ## How it Works
 
-Sisyphus uses an aliased form_tag method to automatically put a *&lt;script&gt;...&lt;/script&gt;* tag infront of your forms to initialize Sisyphus
+Sisyphus uses an aliased form_tag method to automatically put a *&lt;script&gt;...&lt;/script&gt;* tag infront of your forms to initialize Sisyphus. It also uses an aliased FormHelper form_for method to read options.
 
     <script>$(document).ready(function() {$('#sampleform').sisyphus();});</script>
     <form id="sampleform">
-    ...
+      ...
     </form>
 ## Usage
 
@@ -35,6 +35,11 @@ Sisyphus automatically works with all your forms, including custom form builders
 
 ### Exclude form
 
+To stop Sisyphus from initializing on a form include the *with_sisyphus* option in your form_for.
+
+    <%= form_for User.new, :with_sisyphus=>false do |f| %>
+      ...
+    <% end %>
 
 ## Dependencies
 
@@ -44,8 +49,13 @@ Sisyphus automatically works with all your forms, including custom form builders
 ## TODO
 
 - Tests
-- Multiple library support for jStorage (Prototype, Mootools etc.)
 - Model/Object based exclusions
+- block based options
+
+    <%= form_for User.new do |f| %>
+      <% :sisyphus => flase %>
+      ...
+    <% end %>
 
 ## Contributing
 

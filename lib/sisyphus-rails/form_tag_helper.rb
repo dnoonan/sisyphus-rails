@@ -6,7 +6,7 @@ module ActionView
         buf = ActiveSupport::SafeBuffer.new
 
         if options.has_key?(:id) && Sisyphus::process
-          buf.safe_concat("<script type=\"text/javascript\">$(document).ready(function() {$('##{options[:id]}').sisyphus();});</script>")
+          buf.safe_concat("<script type=\"text/javascript\">$(document).ready(function() {$('##{options[:id]}').sisyphus({excludeFields: $('input[name=utf8], input[name=_method], input[name=authenticity_token]')});});</script>")
         end
 
         buf << form_tag_without_sisyphus(url_for_options, options, &block)

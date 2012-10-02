@@ -16,6 +16,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "railties", "~> 3.1"
-  gem.add_dependency "jquery-rails"
+  gem.requirements << 'requires jQuery 1.4+ to be included before Sisyphus'
+  gem.requirements << 'requires jQuery 1.8+ to be included if you require jStorage'
+
+  gem.add_dependency "rails", ">= 3.1.0"
 end
+

@@ -48,7 +48,7 @@ Sisyphus automatically works with all your forms, including custom form builders
 
 ### Exclude a form
 
-To stop Sisyphus from initializing on a form include the *with_sisyphus* option in your form_for.
+To stop Sisyphus from initializing on a form include the *with_sisyphus* option in your form_for. This switch overrides the others
 
     <%= form_for User.new, :with_sisyphus=>false do |f| %>
       ...
@@ -56,14 +56,14 @@ To stop Sisyphus from initializing on a form include the *with_sisyphus* option 
 
 ### Exclude/Include a model
 
-To exclude or include a specific model you can enter it in your ENV or the *sisyphus.yml* file. The configuration takes a comma (,) separated string of __lower case__ model names.
+To exclude or include a specific model you can enter it in your ENV or the *sisyphus.yml* file. The configuration takes a comma (,) separated string of __lower case__ model names. This switch takes precedence over the global switch.
 
     exclude_models: user
     include_models: comment,post
     
-### Include/Exclude everything
+### Exclude/Include everything
 
-You can also set the *sisyphus_enabled* option to true/false in your ENV or the *sisyphus.yml* file to turn Sisyphus on or off by default.
+You can also set the *sisyphus_enabled* option to true/false in your ENV or the *sisyphus.yml* file to turn Sisyphus on or off by default. If no other switches are set this will be used.
 
     sisyphus_enabled: false
     

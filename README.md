@@ -79,19 +79,20 @@ The switches work together to see if a form should be protected by Sisyphus or n
 ## TODO
 
 - Tests
-- Move away from form_tag_helper, should be able to do it all from form_helper? Script tag can go at the end anyhow. Why aren't we doing that right now? We don't seem to have access to the same variables that the regular form_for does. Also the options array gets muddied by the FormHelper form_for call -> it removes the [:html] section (we need the id of the form for sisyphus). 
+
 - rubydoc.info hosted documentation so the rubygems.org page doesn't look like crap.
 - conflict resolution... i.e. you have an object edit form, the fields are populated from the DB but if you have local browser changes they may get overridden. We need a way to resolve conflicts between local and remote data -> could use a jquery based modal dialog to present the diff?
 - Model based exclusions/options via activerecord extension? We have config based exclude/includes now
-- block based options (this would allow us to easily and neatly implement Sisyphus options)
+- implement all sisyphus options and any relevant ones in jStorage
+- block based options (this would allow us to easily and neatly implement Sisyphus options). The do...end block is passed in but how do we interact with it to get options out? Is this possible in any way?
 
     <%= form_for User.new do |f| %>
       <% :sisyphus => flase %>
       <% :sisyphus_customKeyPrefix => 'sisy' %>
       ...
     <% end %>
-
-- implement all sisyphus options and any relevant ones in jStorage
+    
+- Move away from form_tag_helper, should be able to do it all from form_helper? Script tag can go at the end anyhow. Why aren't we doing that right now? We don't seem to have access to the same variables that the regular form_for does. Also the options array gets muddied by the FormHelper form_for call -> it removes the [:html] section (we need the id of the form for sisyphus). It would be nice if we could get away with this but there are certain things like the form name that we need to know that aren't easily available in the FormHelper.
 
 ## Contributing
 

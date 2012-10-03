@@ -2,9 +2,10 @@ production:
   # globally enable or disable sisyphus form protection
   sisyphus_enabled: true
   # models to exclude from the default enabled state
-  # exclude_models: User,Post
+  # note that lower case singular is used
+  # exclude_models: user,post
   # models to include from the default disbaled state
-  # include_models: User,Post
+  # include_models: user,post
 
 development:
   sisyphus_enabled: true

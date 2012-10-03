@@ -23,6 +23,7 @@ For a basic install include the following in your *app/assets/javascripts/applic
 To support IE6/7 users include jStorage as well
 
     //= require jstorage
+    //= require sisyphus
 
 ## How it Works
 

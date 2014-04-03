@@ -1,18 +1,960 @@
-(function(){function x(a,b){function f(){if("session"==a)try{j=m.parse(window.name||"{}")}catch(b){j={}}}var h=!1,e=0,g,d,j={};Math.random();if(b||"undefined"==typeof window[a+"Storage"])if("local"==a&&window.globalStorage)localStorage=window.globalStorage[window.location.hostname];else if("userDataBehavior"==l){b&&(window[a+"Storage"]&&window[a+"Storage"].parentNode)&&window[a+"Storage"].parentNode.removeChild(window[a+"Storage"]);d=document.createElement("button");document.getElementsByTagName("head")[0].appendChild(d);
-"local"==a?j=c:"session"==a&&f();for(g in j)j.hasOwnProperty(g)&&("__jstorage_meta"!=g&&"length"!=g&&"undefined"!=typeof j[g])&&(g in d||e++,d[g]=j[g]);d.length=e;d.key=function(a){var b=0,c;f();for(c in j)if(j.hasOwnProperty(c)&&"__jstorage_meta"!=c&&"length"!=c&&"undefined"!=typeof j[c]){if(b==a)return c;b++}};d.getItem=function(b){f();return"session"==a?j[b]:o.jStorage.get(b)};d.setItem=function(a,b){"undefined"!=typeof b&&(d[a]=(b||"").toString())};d.removeItem=function(b){if("local"==a)return o.jStorage.deleteKey(b);
-d[b]=void 0;h=!0;b in d&&d.removeAttribute(b);h=!1};d.clear=function(){"session"==a?(window.name="",x("session",!0)):o.jStorage.flush()};"local"==a&&(z=function(a,b){"length"!=a&&(h=!0,"undefined"==typeof b?a in d&&(e--,d.removeAttribute(a)):(a in d||e++,d[a]=(b||"").toString()),d.length=e,h=!1)});d.attachEvent("onpropertychange",function(b){if("length"!=b.propertyName&&!(h||"length"==b.propertyName)){if("local"==a)!(b.propertyName in j)&&"undefined"!=typeof d[b.propertyName]&&e++;else if("session"==
-a){f();"undefined"!=typeof d[b.propertyName]&&!(b.propertyName in j)?(j[b.propertyName]=d[b.propertyName],e++):"undefined"==typeof d[b.propertyName]&&b.propertyName in j?(delete j[b.propertyName],e--):j[b.propertyName]=d[b.propertyName];"session"==a&&(window.name=m.stringify(j));d.length=e;return}o.jStorage.set(b.propertyName,d[b.propertyName]);d.length=e}});window[a+"Storage"]=d}}function D(){var a="{}";if("userDataBehavior"==l){i.load("jStorage");try{a=i.getAttribute("jStorage")}catch(b){}try{q=
-i.getAttribute("jStorage_update")}catch(c){}k.jStorage=a}E();y();F()}function t(){var a;clearTimeout(G);G=setTimeout(function(){if("localStorage"==l||"globalStorage"==l)a=k.jStorage_update;else if("userDataBehavior"==l){i.load("jStorage");try{a=i.getAttribute("jStorage_update")}catch(b){}}if(a&&a!=q){q=a;var f=m.parse(m.stringify(c.__jstorage_meta.CRC32)),h;D();h=m.parse(m.stringify(c.__jstorage_meta.CRC32));var e,g=[],d=[];for(e in f)f.hasOwnProperty(e)&&(h[e]?f[e]!=h[e]&&g.push(e):d.push(e));for(e in h)h.hasOwnProperty(e)&&
-(f[e]||g.push(e));r(g,"updated");r(d,"deleted")}},25)}function r(a,b){a=[].concat(a||[]);if("flushed"==b){var a=[],c;for(c in n)n.hasOwnProperty(c)&&a.push(c);b="deleted"}c=0;for(var h=a.length;c<h;c++)if(n[a[c]])for(var e=0,g=n[a[c]].length;e<g;e++)n[a[c]][e](a[c],b)}function u(){var a=(+new Date).toString();"localStorage"==l||"globalStorage"==l?k.jStorage_update=a:"userDataBehavior"==l&&(i.setAttribute("jStorage_update",a),i.save("jStorage"));t()}function E(){if(k.jStorage)try{c=m.parse(String(k.jStorage))}catch(a){k.jStorage=
-"{}"}else k.jStorage="{}";A=k.jStorage?String(k.jStorage).length:0;c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.CRC32||(c.__jstorage_meta.CRC32={})}function v(){if(c.__jstorage_meta.PubSub){for(var a=+new Date-2E3,b=0,f=c.__jstorage_meta.PubSub.length;b<f;b++)if(c.__jstorage_meta.PubSub[b][0]<=a){c.__jstorage_meta.PubSub.splice(b,c.__jstorage_meta.PubSub.length-b);break}c.__jstorage_meta.PubSub.length||delete c.__jstorage_meta.PubSub}try{k.jStorage=m.stringify(c),i&&(i.setAttribute("jStorage",
-k.jStorage),i.save("jStorage")),A=k.jStorage?String(k.jStorage).length:0}catch(h){}}function p(a){if(!a||"string"!=typeof a&&"number"!=typeof a)throw new TypeError("Key name must be string or numeric");if("__jstorage_meta"==a)throw new TypeError("Reserved key name");return!0}function y(){var a,b,f,h,e=Infinity,g=!1,d=[];clearTimeout(H);if(c.__jstorage_meta&&"object"==typeof c.__jstorage_meta.TTL){a=+new Date;f=c.__jstorage_meta.TTL;h=c.__jstorage_meta.CRC32;for(b in f)f.hasOwnProperty(b)&&(f[b]<=
-a?(delete f[b],delete h[b],delete c[b],g=!0,d.push(b)):f[b]<e&&(e=f[b]));Infinity!=e&&(H=setTimeout(y,e-a));g&&(v(),u(),r(d,"deleted"))}}function F(){if(c.__jstorage_meta.PubSub){for(var a,b=B,f=len=c.__jstorage_meta.PubSub.length-1;0<=f;f--)if(a=c.__jstorage_meta.PubSub[f],a[0]>B){var b=a[0],h=a[1];a=a[2];if(s[h])for(var e=0,g=s[h].length;e<g;e++)s[h][e](h,m.parse(m.stringify(a)))}B=b}}var o=window.jQuery||window.$||(window.$={}),m={parse:window.JSON&&(window.JSON.parse||window.JSON.decode)||String.prototype.evalJSON&&
-function(a){return String(a).evalJSON()}||o.parseJSON||o.evalJSON,stringify:Object.toJSON||window.JSON&&(window.JSON.stringify||window.JSON.encode)||o.toJSON};if(!m.parse||!m.stringify)throw Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");var c={},k={jStorage:"{}"},i=null,A=0,l=!1,n={},G=!1,q=0,s={},B=+new Date,H,C={isXML:function(a){return(a=(a?a.ownerDocument||a:0).documentElement)?"HTML"!==a.nodeName:!1},encode:function(a){if(!this.isXML(a))return!1;
-try{return(new XMLSerializer).serializeToString(a)}catch(b){try{return a.xml}catch(c){}}return!1},decode:function(a){var b="DOMParser"in window&&(new DOMParser).parseFromString||window.ActiveXObject&&function(a){var b=new ActiveXObject("Microsoft.XMLDOM");b.async="false";b.loadXML(a);return b};if(!b)return!1;a=b.call("DOMParser"in window&&new DOMParser||window,a,"text/xml");return this.isXML(a)?a:!1}},z=function(){};o.jStorage={version:"0.3.0",set:function(a,b,f){p(a);f=f||{};if("undefined"==typeof b)return this.deleteKey(a),
-b;if(C.isXML(b))b={_is_xml:!0,xml:C.encode(b)};else{if("function"==typeof b)return;b&&"object"==typeof b&&(b=m.parse(m.stringify(b)))}c[a]=b;var h=c.__jstorage_meta.CRC32,e=m.stringify(b),g,d=0,d=0;g=-1;for(var j=0,i=e.length;j<i;j++)d=(g^e.charCodeAt(j))&255,d="0x"+"00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D".substr(9*
-d,8),g=g>>>8^d;h[a]=g^-1;this.setTTL(a,f.TTL||0);z(a,b);r(a,"updated");return b},get:function(a,b){p(a);return a in c?c[a]&&"object"==typeof c[a]&&c[a]._is_xml&&c[a]._is_xml?C.decode(c[a].xml):c[a]:"undefined"==typeof b?null:b},deleteKey:function(a){p(a);return a in c?(delete c[a],"object"==typeof c.__jstorage_meta.TTL&&a in c.__jstorage_meta.TTL&&delete c.__jstorage_meta.TTL[a],delete c.__jstorage_meta.CRC32[a],z(a,void 0),v(),u(),r(a,"deleted"),!0):!1},setTTL:function(a,b){var f=+new Date;p(a);
-b=Number(b)||0;return a in c?(c.__jstorage_meta.TTL||(c.__jstorage_meta.TTL={}),0<b?c.__jstorage_meta.TTL[a]=f+b:delete c.__jstorage_meta.TTL[a],v(),y(),u(),!0):!1},getTTL:function(a){var b=+new Date;p(a);return a in c&&c.__jstorage_meta.TTL&&c.__jstorage_meta.TTL[a]?(a=c.__jstorage_meta.TTL[a]-b)||0:0},flush:function(){c={__jstorage_meta:{CRC32:{}}};x("local",!0);v();u();r(null,"flushed");return!0},storageObj:function(){function a(){}a.prototype=c;return new a},index:function(){var a=[],b;for(b in c)c.hasOwnProperty(b)&&
-"__jstorage_meta"!=b&&a.push(b);return a},storageSize:function(){return A},currentBackend:function(){return l},storageAvailable:function(){return!!l},listenKeyChange:function(a,b){p(a);n[a]||(n[a]=[]);n[a].push(b)},stopListening:function(a,b){p(a);if(n[a])if(b)for(var c=n[a].length-1;0<=c;c--)n[a][c]==b&&n[a].splice(c,1);else delete n[a]},subscribe:function(a,b){a=(a||"").toString();if(!a)throw new TypeError("Channel not defined");s[a]||(s[a]=[]);s[a].push(b)},publish:function(a,b){a=(a||"").toString();
-if(!a)throw new TypeError("Channel not defined");c.__jstorage_meta||(c.__jstorage_meta={});c.__jstorage_meta.PubSub||(c.__jstorage_meta.PubSub=[]);c.__jstorage_meta.PubSub.unshift([+new Date,a,b]);v();u()},reInit:function(){D()}};a:{var w=!1;if("localStorage"in window)try{window.localStorage.setItem("_tmptest","tmpval"),w=!0,window.localStorage.removeItem("_tmptest")}catch(I){}if(w)try{window.localStorage&&(k=window.localStorage,l="localStorage",q=k.jStorage_update)}catch(J){}else if("globalStorage"in
-window)try{window.globalStorage&&(k=window.globalStorage[window.location.hostname],l="globalStorage",q=k.jStorage_update)}catch(K){}else if(i=document.createElement("link"),i.addBehavior){i.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(i);try{i.load("jStorage")}catch(L){i.setAttribute("jStorage","{}"),i.save("jStorage"),i.load("jStorage")}w="{}";try{w=i.getAttribute("jStorage")}catch(M){}try{q=i.getAttribute("jStorage_update")}catch(N){}k.jStorage=w;
-l="userDataBehavior"}else{i=null;break a}E();y();x("local");x("session");"localStorage"==l||"globalStorage"==l?"addEventListener"in window?window.addEventListener("storage",t,!1):document.attachEvent("onstorage",t):"userDataBehavior"==l&&setInterval(t,1E3);F();"addEventListener"in window&&window.addEventListener("pageshow",function(a){a.persisted&&t()},!1)}})();
+/*
+ * ----------------------------- JSTORAGE -------------------------------------
+ * Simple local storage wrapper to save data on the browser side, supporting
+ * all major browsers - IE6+, Firefox2+, Safari4+, Chrome4+ and Opera 10.5+
+ *
+ * Author: Andris Reinman, andris.reinman@gmail.com
+ * Project homepage: www.jstorage.info
+ *
+ * Licensed under Unlicense:
+ *
+ * This is free and unencumbered software released into the public domain.
+ * 
+ * Anyone is free to copy, modify, publish, use, compile, sell, or
+ * distribute this software, either in source code form or as a compiled
+ * binary, for any purpose, commercial or non-commercial, and by any
+ * means.
+ * 
+ * In jurisdictions that recognize copyright laws, the author or authors
+ * of this software dedicate any and all copyright interest in the
+ * software to the public domain. We make this dedication for the benefit
+ * of the public at large and to the detriment of our heirs and
+ * successors. We intend this dedication to be an overt act of
+ * relinquishment in perpetuity of all present and future rights to this
+ * software under copyright law.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * For more information, please refer to <http://unlicense.org/>
+ */
+
+ (function(){
+    var
+        /* jStorage version */
+        JSTORAGE_VERSION = "0.4.8",
+
+        /* detect a dollar object or create one if not found */
+        $ = window.jQuery || window.$ || (window.$ = {}),
+
+        /* check for a JSON handling support */
+        JSON = {
+            parse:
+                window.JSON && (window.JSON.parse || window.JSON.decode) ||
+                String.prototype.evalJSON && function(str){return String(str).evalJSON();} ||
+                $.parseJSON ||
+                $.evalJSON,
+            stringify:
+                Object.toJSON ||
+                window.JSON && (window.JSON.stringify || window.JSON.encode) ||
+                $.toJSON
+        };
+
+    // Break if no JSON support was found
+    if(!("parse" in JSON) || !("stringify" in JSON)){
+        throw new Error("No JSON support found, include //cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js to page");
+    }
+
+    var
+        /* This is the object, that holds the cached values */
+        _storage = {__jstorage_meta:{CRC32:{}}},
+
+        /* Actual browser storage (localStorage or globalStorage["domain"]) */
+        _storage_service = {jStorage:"{}"},
+
+        /* DOM element for older IE versions, holds userData behavior */
+        _storage_elm = null,
+
+        /* How much space does the storage take */
+        _storage_size = 0,
+
+        /* which backend is currently used */
+        _backend = false,
+
+        /* onchange observers */
+        _observers = {},
+
+        /* timeout to wait after onchange event */
+        _observer_timeout = false,
+
+        /* last update time */
+        _observer_update = 0,
+
+        /* pubsub observers */
+        _pubsub_observers = {},
+
+        /* skip published items older than current timestamp */
+        _pubsub_last = +new Date(),
+
+        /* Next check for TTL */
+        _ttl_timeout,
+
+        /**
+         * XML encoding and decoding as XML nodes can't be JSON'ized
+         * XML nodes are encoded and decoded if the node is the value to be saved
+         * but not if it's as a property of another object
+         * Eg. -
+         *   $.jStorage.set("key", xmlNode);        // IS OK
+         *   $.jStorage.set("key", {xml: xmlNode}); // NOT OK
+         */
+        _XMLService = {
+
+            /**
+             * Validates a XML node to be XML
+             * based on jQuery.isXML function
+             */
+            isXML: function(elm){
+                var documentElement = (elm ? elm.ownerDocument || elm : 0).documentElement;
+                return documentElement ? documentElement.nodeName !== "HTML" : false;
+            },
+
+            /**
+             * Encodes a XML node to string
+             * based on http://www.mercurytide.co.uk/news/article/issues-when-working-ajax/
+             */
+            encode: function(xmlNode) {
+                if(!this.isXML(xmlNode)){
+                    return false;
+                }
+                try{ // Mozilla, Webkit, Opera
+                    return new XMLSerializer().serializeToString(xmlNode);
+                }catch(E1) {
+                    try {  // IE
+                        return xmlNode.xml;
+                    }catch(E2){}
+                }
+                return false;
+            },
+
+            /**
+             * Decodes a XML node from string
+             * loosely based on http://outwestmedia.com/jquery-plugins/xmldom/
+             */
+            decode: function(xmlString){
+                var dom_parser = ("DOMParser" in window && (new DOMParser()).parseFromString) ||
+                        (window.ActiveXObject && function(_xmlString) {
+                    var xml_doc = new ActiveXObject("Microsoft.XMLDOM");
+                    xml_doc.async = "false";
+                    xml_doc.loadXML(_xmlString);
+                    return xml_doc;
+                }),
+                resultXML;
+                if(!dom_parser){
+                    return false;
+                }
+                resultXML = dom_parser.call("DOMParser" in window && (new DOMParser()) || window, xmlString, "text/xml");
+                return this.isXML(resultXML)?resultXML:false;
+            }
+        };
+
+
+    ////////////////////////// PRIVATE METHODS ////////////////////////
+
+    /**
+     * Initialization function. Detects if the browser supports DOM Storage
+     * or userData behavior and behaves accordingly.
+     */
+    function _init(){
+        /* Check if browser supports localStorage */
+        var localStorageReallyWorks = false;
+        if("localStorage" in window){
+            try {
+                window.localStorage.setItem("_tmptest", "tmpval");
+                localStorageReallyWorks = true;
+                window.localStorage.removeItem("_tmptest");
+            } catch(BogusQuotaExceededErrorOnIos5) {
+                // Thanks be to iOS5 Private Browsing mode which throws
+                // QUOTA_EXCEEDED_ERRROR DOM Exception 22.
+            }
+        }
+
+        if(localStorageReallyWorks){
+            try {
+                if(window.localStorage) {
+                    _storage_service = window.localStorage;
+                    _backend = "localStorage";
+                    _observer_update = _storage_service.jStorage_update;
+                }
+            } catch(E3) {/* Firefox fails when touching localStorage and cookies are disabled */}
+        }
+        /* Check if browser supports globalStorage */
+        else if("globalStorage" in window){
+            try {
+                if(window.globalStorage) {
+                    if(window.location.hostname == "localhost"){
+                        _storage_service = window.globalStorage["localhost.localdomain"];
+                    }
+                    else{
+                        _storage_service = window.globalStorage[window.location.hostname];
+                    }
+                    _backend = "globalStorage";
+                    _observer_update = _storage_service.jStorage_update;
+                }
+            } catch(E4) {/* Firefox fails when touching localStorage and cookies are disabled */}
+        }
+        /* Check if browser supports userData behavior */
+        else {
+            _storage_elm = document.createElement("link");
+            if(_storage_elm.addBehavior){
+
+                /* Use a DOM element to act as userData storage */
+                _storage_elm.style.behavior = "url(#default#userData)";
+
+                /* userData element needs to be inserted into the DOM! */
+                document.getElementsByTagName("head")[0].appendChild(_storage_elm);
+
+                try{
+                    _storage_elm.load("jStorage");
+                }catch(E){
+                    // try to reset cache
+                    _storage_elm.setAttribute("jStorage", "{}");
+                    _storage_elm.save("jStorage");
+                    _storage_elm.load("jStorage");
+                }
+
+                var data = "{}";
+                try{
+                    data = _storage_elm.getAttribute("jStorage");
+                }catch(E5){}
+
+                try{
+                    _observer_update = _storage_elm.getAttribute("jStorage_update");
+                }catch(E6){}
+
+                _storage_service.jStorage = data;
+                _backend = "userDataBehavior";
+            }else{
+                _storage_elm = null;
+                return;
+            }
+        }
+
+        // Load data from storage
+        _load_storage();
+
+        // remove dead keys
+        _handleTTL();
+
+        // start listening for changes
+        _setupObserver();
+
+        // initialize publish-subscribe service
+        _handlePubSub();
+
+        // handle cached navigation
+        if("addEventListener" in window){
+            window.addEventListener("pageshow", function(event){
+                if(event.persisted){
+                    _storageObserver();
+                }
+            }, false);
+        }
+    }
+
+    /**
+     * Reload data from storage when needed
+     */
+    function _reloadData(){
+        var data = "{}";
+
+        if(_backend == "userDataBehavior"){
+            _storage_elm.load("jStorage");
+
+            try{
+                data = _storage_elm.getAttribute("jStorage");
+            }catch(E5){}
+
+            try{
+                _observer_update = _storage_elm.getAttribute("jStorage_update");
+            }catch(E6){}
+
+            _storage_service.jStorage = data;
+        }
+
+        _load_storage();
+
+        // remove dead keys
+        _handleTTL();
+
+        _handlePubSub();
+    }
+
+    /**
+     * Sets up a storage change observer
+     */
+    function _setupObserver(){
+        if(_backend == "localStorage" || _backend == "globalStorage"){
+            if("addEventListener" in window){
+                window.addEventListener("storage", _storageObserver, false);
+            }else{
+                document.attachEvent("onstorage", _storageObserver);
+            }
+        }else if(_backend == "userDataBehavior"){
+            setInterval(_storageObserver, 1000);
+        }
+    }
+
+    /**
+     * Fired on any kind of data change, needs to check if anything has
+     * really been changed
+     */
+    function _storageObserver(){
+        var updateTime;
+        // cumulate change notifications with timeout
+        clearTimeout(_observer_timeout);
+        _observer_timeout = setTimeout(function(){
+
+            if(_backend == "localStorage" || _backend == "globalStorage"){
+                updateTime = _storage_service.jStorage_update;
+            }else if(_backend == "userDataBehavior"){
+                _storage_elm.load("jStorage");
+                try{
+                    updateTime = _storage_elm.getAttribute("jStorage_update");
+                }catch(E5){}
+            }
+
+            if(updateTime && updateTime != _observer_update){
+                _observer_update = updateTime;
+                _checkUpdatedKeys();
+            }
+
+        }, 25);
+    }
+
+    /**
+     * Reloads the data and checks if any keys are changed
+     */
+    function _checkUpdatedKeys(){
+        var oldCrc32List = JSON.parse(JSON.stringify(_storage.__jstorage_meta.CRC32)),
+            newCrc32List;
+
+        _reloadData();
+        newCrc32List = JSON.parse(JSON.stringify(_storage.__jstorage_meta.CRC32));
+
+        var key,
+            updated = [],
+            removed = [];
+
+        for(key in oldCrc32List){
+            if(oldCrc32List.hasOwnProperty(key)){
+                if(!newCrc32List[key]){
+                    removed.push(key);
+                    continue;
+                }
+                if(oldCrc32List[key] != newCrc32List[key] && String(oldCrc32List[key]).substr(0,2) == "2."){
+                    updated.push(key);
+                }
+            }
+        }
+
+        for(key in newCrc32List){
+            if(newCrc32List.hasOwnProperty(key)){
+                if(!oldCrc32List[key]){
+                    updated.push(key);
+                }
+            }
+        }
+
+        _fireObservers(updated, "updated");
+        _fireObservers(removed, "deleted");
+    }
+
+    /**
+     * Fires observers for updated keys
+     *
+     * @param {Array|String} keys Array of key names or a key
+     * @param {String} action What happened with the value (updated, deleted, flushed)
+     */
+    function _fireObservers(keys, action){
+        keys = [].concat(keys || []);
+        if(action == "flushed"){
+            keys = [];
+            for(var key in _observers){
+                if(_observers.hasOwnProperty(key)){
+                    keys.push(key);
+                }
+            }
+            action = "deleted";
+        }
+        for(var i=0, len = keys.length; i<len; i++){
+            if(_observers[keys[i]]){
+                for(var j=0, jlen = _observers[keys[i]].length; j<jlen; j++){
+                    _observers[keys[i]][j](keys[i], action);
+                }
+            }
+            if(_observers["*"]){
+                for(var j=0, jlen = _observers["*"].length; j<jlen; j++){
+                    _observers["*"][j](keys[i], action);
+                }
+            }
+        }
+    }
+
+    /**
+     * Publishes key change to listeners
+     */
+    function _publishChange(){
+        var updateTime = (+new Date()).toString();
+
+        if(_backend == "localStorage" || _backend == "globalStorage"){
+            try {
+                _storage_service.jStorage_update = updateTime;
+            } catch (E8) {
+                // safari private mode has been enabled after the jStorage initialization
+                _backend = false;
+            }
+        }else if(_backend == "userDataBehavior"){
+            _storage_elm.setAttribute("jStorage_update", updateTime);
+            _storage_elm.save("jStorage");
+        }
+
+        _storageObserver();
+    }
+
+    /**
+     * Loads the data from the storage based on the supported mechanism
+     */
+    function _load_storage(){
+        /* if jStorage string is retrieved, then decode it */
+        if(_storage_service.jStorage){
+            try{
+                _storage = JSON.parse(String(_storage_service.jStorage));
+            }catch(E6){_storage_service.jStorage = "{}";}
+        }else{
+            _storage_service.jStorage = "{}";
+        }
+        _storage_size = _storage_service.jStorage?String(_storage_service.jStorage).length:0;
+
+        if(!_storage.__jstorage_meta){
+            _storage.__jstorage_meta = {};
+        }
+        if(!_storage.__jstorage_meta.CRC32){
+            _storage.__jstorage_meta.CRC32 = {};
+        }
+    }
+
+    /**
+     * This functions provides the "save" mechanism to store the jStorage object
+     */
+    function _save(){
+        _dropOldEvents(); // remove expired events
+        try{
+            _storage_service.jStorage = JSON.stringify(_storage);
+            // If userData is used as the storage engine, additional
+            if(_storage_elm) {
+                _storage_elm.setAttribute("jStorage",_storage_service.jStorage);
+                _storage_elm.save("jStorage");
+            }
+            _storage_size = _storage_service.jStorage?String(_storage_service.jStorage).length:0;
+        }catch(E7){/* probably cache is full, nothing is saved this way*/}
+    }
+
+    /**
+     * Function checks if a key is set and is string or numberic
+     *
+     * @param {String} key Key name
+     */
+    function _checkKey(key){
+        if(typeof key != "string" && typeof key != "number"){
+            throw new TypeError("Key name must be string or numeric");
+        }
+        if(key == "__jstorage_meta"){
+            throw new TypeError("Reserved key name");
+        }
+        return true;
+    }
+
+    /**
+     * Removes expired keys
+     */
+    function _handleTTL(){
+        var curtime, i, TTL, CRC32, nextExpire = Infinity, changed = false, deleted = [];
+
+        clearTimeout(_ttl_timeout);
+
+        if(!_storage.__jstorage_meta || typeof _storage.__jstorage_meta.TTL != "object"){
+            // nothing to do here
+            return;
+        }
+
+        curtime = +new Date();
+        TTL = _storage.__jstorage_meta.TTL;
+
+        CRC32 = _storage.__jstorage_meta.CRC32;
+        for(i in TTL){
+            if(TTL.hasOwnProperty(i)){
+                if(TTL[i] <= curtime){
+                    delete TTL[i];
+                    delete CRC32[i];
+                    delete _storage[i];
+                    changed = true;
+                    deleted.push(i);
+                }else if(TTL[i] < nextExpire){
+                    nextExpire = TTL[i];
+                }
+            }
+        }
+
+        // set next check
+        if(nextExpire != Infinity){
+            _ttl_timeout = setTimeout(_handleTTL, nextExpire - curtime);
+        }
+
+        // save changes
+        if(changed){
+            _save();
+            _publishChange();
+            _fireObservers(deleted, "deleted");
+        }
+    }
+
+    /**
+     * Checks if there's any events on hold to be fired to listeners
+     */
+    function _handlePubSub(){
+        var i, len;
+        if(!_storage.__jstorage_meta.PubSub){
+            return;
+        }
+        var pubelm,
+            _pubsubCurrent = _pubsub_last;
+
+        for(i=len=_storage.__jstorage_meta.PubSub.length-1; i>=0; i--){
+            pubelm = _storage.__jstorage_meta.PubSub[i];
+            if(pubelm[0] > _pubsub_last){
+                _pubsubCurrent = pubelm[0];
+                _fireSubscribers(pubelm[1], pubelm[2]);
+            }
+        }
+
+        _pubsub_last = _pubsubCurrent;
+    }
+
+    /**
+     * Fires all subscriber listeners for a pubsub channel
+     *
+     * @param {String} channel Channel name
+     * @param {Mixed} payload Payload data to deliver
+     */
+    function _fireSubscribers(channel, payload){
+        if(_pubsub_observers[channel]){
+            for(var i=0, len = _pubsub_observers[channel].length; i<len; i++){
+                // send immutable data that can't be modified by listeners
+                try{
+                    _pubsub_observers[channel][i](channel, JSON.parse(JSON.stringify(payload)));
+                }catch(E){};
+            }
+        }
+    }
+
+    /**
+     * Remove old events from the publish stream (at least 2sec old)
+     */
+    function _dropOldEvents(){
+        if(!_storage.__jstorage_meta.PubSub){
+            return;
+        }
+
+        var retire = +new Date() - 2000;
+
+        for(var i=0, len = _storage.__jstorage_meta.PubSub.length; i<len; i++){
+            if(_storage.__jstorage_meta.PubSub[i][0] <= retire){
+                // deleteCount is needed for IE6
+                _storage.__jstorage_meta.PubSub.splice(i, _storage.__jstorage_meta.PubSub.length - i);
+                break;
+            }
+        }
+
+        if(!_storage.__jstorage_meta.PubSub.length){
+            delete _storage.__jstorage_meta.PubSub;
+        }
+
+    }
+
+    /**
+     * Publish payload to a channel
+     *
+     * @param {String} channel Channel name
+     * @param {Mixed} payload Payload to send to the subscribers
+     */
+    function _publish(channel, payload){
+        if(!_storage.__jstorage_meta){
+            _storage.__jstorage_meta = {};
+        }
+        if(!_storage.__jstorage_meta.PubSub){
+            _storage.__jstorage_meta.PubSub = [];
+        }
+
+        _storage.__jstorage_meta.PubSub.unshift([+new Date, channel, payload]);
+
+        _save();
+        _publishChange();
+    }
+
+
+    /**
+     * JS Implementation of MurmurHash2
+     *
+     *  SOURCE: https://github.com/garycourt/murmurhash-js (MIT licensed)
+     *
+     * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
+     * @see http://github.com/garycourt/murmurhash-js
+     * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
+     * @see http://sites.google.com/site/murmurhash/
+     *
+     * @param {string} str ASCII only
+     * @param {number} seed Positive integer only
+     * @return {number} 32-bit positive integer hash
+     */
+
+    function murmurhash2_32_gc(str, seed) {
+        var
+            l = str.length,
+            h = seed ^ l,
+            i = 0,
+            k;
+
+        while (l >= 4) {
+            k =
+                ((str.charCodeAt(i) & 0xff)) |
+                ((str.charCodeAt(++i) & 0xff) << 8) |
+                ((str.charCodeAt(++i) & 0xff) << 16) |
+                ((str.charCodeAt(++i) & 0xff) << 24);
+
+            k = (((k & 0xffff) * 0x5bd1e995) + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+            k ^= k >>> 24;
+            k = (((k & 0xffff) * 0x5bd1e995) + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+
+            h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16)) ^ k;
+
+            l -= 4;
+            ++i;
+        }
+
+        switch (l) {
+            case 3: h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+            case 2: h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+            case 1: h ^= (str.charCodeAt(i) & 0xff);
+                h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+        }
+
+        h ^= h >>> 13;
+        h = (((h & 0xffff) * 0x5bd1e995) + ((((h >>> 16) * 0x5bd1e995) & 0xffff) << 16));
+        h ^= h >>> 15;
+
+        return h >>> 0;
+    }
+
+    ////////////////////////// PUBLIC INTERFACE /////////////////////////
+
+    $.jStorage = {
+        /* Version number */
+        version: JSTORAGE_VERSION,
+
+        /**
+         * Sets a key's value.
+         *
+         * @param {String} key Key to set. If this value is not set or not
+         *              a string an exception is raised.
+         * @param {Mixed} value Value to set. This can be any value that is JSON
+         *              compatible (Numbers, Strings, Objects etc.).
+         * @param {Object} [options] - possible options to use
+         * @param {Number} [options.TTL] - optional TTL value
+         * @return {Mixed} the used value
+         */
+        set: function(key, value, options){
+            _checkKey(key);
+
+            options = options || {};
+
+            // undefined values are deleted automatically
+            if(typeof value == "undefined"){
+                this.deleteKey(key);
+                return value;
+            }
+
+            if(_XMLService.isXML(value)){
+                value = {_is_xml:true,xml:_XMLService.encode(value)};
+            }else if(typeof value == "function"){
+                return undefined; // functions can't be saved!
+            }else if(value && typeof value == "object"){
+                // clone the object before saving to _storage tree
+                value = JSON.parse(JSON.stringify(value));
+            }
+
+            _storage[key] = value;
+
+            _storage.__jstorage_meta.CRC32[key] = "2." + murmurhash2_32_gc(JSON.stringify(value), 0x9747b28c);
+
+            this.setTTL(key, options.TTL || 0); // also handles saving and _publishChange
+
+            _fireObservers(key, "updated");
+            return value;
+        },
+
+        /**
+         * Looks up a key in cache
+         *
+         * @param {String} key - Key to look up.
+         * @param {mixed} def - Default value to return, if key didn't exist.
+         * @return {Mixed} the key value, default value or null
+         */
+        get: function(key, def){
+            _checkKey(key);
+            if(key in _storage){
+                if(_storage[key] && typeof _storage[key] == "object" && _storage[key]._is_xml) {
+                    return _XMLService.decode(_storage[key].xml);
+                }else{
+                    return _storage[key];
+                }
+            }
+            return typeof(def) == "undefined" ? null : def;
+        },
+
+        /**
+         * Deletes a key from cache.
+         *
+         * @param {String} key - Key to delete.
+         * @return {Boolean} true if key existed or false if it didn't
+         */
+        deleteKey: function(key){
+            _checkKey(key);
+            if(key in _storage){
+                delete _storage[key];
+                // remove from TTL list
+                if(typeof _storage.__jstorage_meta.TTL == "object" &&
+                  key in _storage.__jstorage_meta.TTL){
+                    delete _storage.__jstorage_meta.TTL[key];
+                }
+
+                delete _storage.__jstorage_meta.CRC32[key];
+
+                _save();
+                _publishChange();
+                _fireObservers(key, "deleted");
+                return true;
+            }
+            return false;
+        },
+
+        /**
+         * Sets a TTL for a key, or remove it if ttl value is 0 or below
+         *
+         * @param {String} key - key to set the TTL for
+         * @param {Number} ttl - TTL timeout in milliseconds
+         * @return {Boolean} true if key existed or false if it didn't
+         */
+        setTTL: function(key, ttl){
+            var curtime = +new Date();
+            _checkKey(key);
+            ttl = Number(ttl) || 0;
+            if(key in _storage){
+
+                if(!_storage.__jstorage_meta.TTL){
+                    _storage.__jstorage_meta.TTL = {};
+                }
+
+                // Set TTL value for the key
+                if(ttl>0){
+                    _storage.__jstorage_meta.TTL[key] = curtime + ttl;
+                }else{
+                    delete _storage.__jstorage_meta.TTL[key];
+                }
+
+                _save();
+
+                _handleTTL();
+
+                _publishChange();
+                return true;
+            }
+            return false;
+        },
+
+        /**
+         * Gets remaining TTL (in milliseconds) for a key or 0 when no TTL has been set
+         *
+         * @param {String} key Key to check
+         * @return {Number} Remaining TTL in milliseconds
+         */
+        getTTL: function(key){
+            var curtime = +new Date(), ttl;
+            _checkKey(key);
+            if(key in _storage && _storage.__jstorage_meta.TTL && _storage.__jstorage_meta.TTL[key]){
+                ttl = _storage.__jstorage_meta.TTL[key] - curtime;
+                return ttl || 0;
+            }
+            return 0;
+        },
+
+        /**
+         * Deletes everything in cache.
+         *
+         * @return {Boolean} Always true
+         */
+        flush: function(){
+            _storage = {__jstorage_meta:{CRC32:{}}};
+            _save();
+            _publishChange();
+            _fireObservers(null, "flushed");
+            return true;
+        },
+
+        /**
+         * Returns a read-only copy of _storage
+         *
+         * @return {Object} Read-only copy of _storage
+        */
+        storageObj: function(){
+            function F() {}
+            F.prototype = _storage;
+            return new F();
+        },
+
+        /**
+         * Returns an index of all used keys as an array
+         * ["key1", "key2",.."keyN"]
+         *
+         * @return {Array} Used keys
+        */
+        index: function(){
+            var index = [], i;
+            for(i in _storage){
+                if(_storage.hasOwnProperty(i) && i != "__jstorage_meta"){
+                    index.push(i);
+                }
+            }
+            return index;
+        },
+
+        /**
+         * How much space in bytes does the storage take?
+         *
+         * @return {Number} Storage size in chars (not the same as in bytes,
+         *                  since some chars may take several bytes)
+         */
+        storageSize: function(){
+            return _storage_size;
+        },
+
+        /**
+         * Which backend is currently in use?
+         *
+         * @return {String} Backend name
+         */
+        currentBackend: function(){
+            return _backend;
+        },
+
+        /**
+         * Test if storage is available
+         *
+         * @return {Boolean} True if storage can be used
+         */
+        storageAvailable: function(){
+            return !!_backend;
+        },
+
+        /**
+         * Register change listeners
+         *
+         * @param {String} key Key name
+         * @param {Function} callback Function to run when the key changes
+         */
+        listenKeyChange: function(key, callback){
+            _checkKey(key);
+            if(!_observers[key]){
+                _observers[key] = [];
+            }
+            _observers[key].push(callback);
+        },
+
+        /**
+         * Remove change listeners
+         *
+         * @param {String} key Key name to unregister listeners against
+         * @param {Function} [callback] If set, unregister the callback, if not - unregister all
+         */
+        stopListening: function(key, callback){
+            _checkKey(key);
+
+            if(!_observers[key]){
+                return;
+            }
+
+            if(!callback){
+                delete _observers[key];
+                return;
+            }
+
+            for(var i = _observers[key].length - 1; i>=0; i--){
+                if(_observers[key][i] == callback){
+                    _observers[key].splice(i,1);
+                }
+            }
+        },
+
+        /**
+         * Subscribe to a Publish/Subscribe event stream
+         *
+         * @param {String} channel Channel name
+         * @param {Function} callback Function to run when the something is published to the channel
+         */
+        subscribe: function(channel, callback){
+            channel = (channel || "").toString();
+            if(!channel){
+                throw new TypeError("Channel not defined");
+            }
+            if(!_pubsub_observers[channel]){
+                _pubsub_observers[channel] = [];
+            }
+            _pubsub_observers[channel].push(callback);
+        },
+
+        /**
+         * Publish data to an event stream
+         *
+         * @param {String} channel Channel name
+         * @param {Mixed} payload Payload to deliver
+         */
+        publish: function(channel, payload){
+            channel = (channel || "").toString();
+            if(!channel){
+                throw new TypeError("Channel not defined");
+            }
+
+            _publish(channel, payload);
+        },
+
+        /**
+         * Reloads the data from browser storage
+         */
+        reInit: function(){
+            _reloadData();
+        },
+
+        /**
+         * Removes reference from global objects and saves it as jStorage
+         *
+         * @param {Boolean} option if needed to save object as simple "jStorage" in windows context
+         */
+         noConflict: function( saveInGlobal ) {
+            delete window.$.jStorage
+
+            if ( saveInGlobal ) {
+                window.jStorage = this;
+            }
+
+            return this;
+         }
+    };
+
+    // Initialize jStorage
+    _init();
+
+})();
